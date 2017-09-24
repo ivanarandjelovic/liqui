@@ -2,23 +2,27 @@ package application;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import application.entity.TablesAndTables;
 import application.service.TablesAndTablesService;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class HelloController {
 
 	@Autowired
 	TablesAndTablesService service;
-	
-    @RequestMapping("/")
-    public String index() {
-    	List<?> records = service.getAll();
-        return "Greetings from Spring Boot. I found "+records.size()+" records!";
-    }
+
+	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TablesAndTables>> index() {
+		return new ResponseEntity<List<TablesAndTables>>(service.getAll(), HttpStatus.OK);
+	}
 
 }
