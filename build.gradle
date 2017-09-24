@@ -48,10 +48,6 @@ sourceSets {
 	}
 }
 
-configurations {
-	integrationTestCompile.extendsFrom testCompile
-	integrationTestRuntime.extendsFrom testRuntime
-}
 
 dependencies {
 	// This dependency is exported to consumers, that is to say found on their compile classpath.
@@ -68,11 +64,16 @@ dependencies {
 	// JUnit 5
 	testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0")
 	testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0")
+	testCompile("org.junit.vintage:junit-vintage-engine:4.12.0")
+
+	testCompile group: 'org.liquibase', name: 'liquibase-core', version: '3.5.3'
+	testCompile("org.springframework.boot:spring-boot-starter-test")
 
 	//integrationTestCompile 'org.assertj:assertj-core:3.0.0'
 
 	compile("org.springframework.boot:spring-boot-starter-web") { exclude module: "spring-boot-starter-tomcat" }
 	compile("org.springframework.boot:spring-boot-starter-jetty")
+
 	// end::jetty[]
 	// tag::actuator[]
 	compile("org.springframework.boot:spring-boot-starter-actuator")
@@ -84,6 +85,12 @@ task integrationTest(type: Test) {
 	classpath = sourceSets.integrationTest.runtimeClasspath
 	//outputs.upToDateWhen { false }
 	group "verification"
+}
+
+
+configurations {
+	integrationTestCompile.extendsFrom testCompile
+	integrationTestRuntime.extendsFrom testRuntime
 }
 
 tasks.withType(Test) {

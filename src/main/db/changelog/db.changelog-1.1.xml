@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-	<changeSet author="authorName" id="changelog-1.1">
+	<changeSet author="authorName" id="changelog-1.1.0">
 		<insert tableName="TablesAndTables">
 			<column name="COLUMN1" type="TEXT">val1</column>
 		</insert>
@@ -12,6 +12,17 @@
 		</insert>
 		<insert tableName="TablesAndTables">
 			<column name="COLUMN1" type="TEXT">val3</column>
+		</insert>
+	</changeSet>
+	<changeSet author="authorName" id="changelog-1.1.1" context="test">
+		<insert tableName="TablesAndTables">
+			<column name="COLUMN1" type="TEXT">val1.1</column>
+		</insert>
+		<insert tableName="TablesAndTables">
+			<column name="COLUMN1" type="TEXT">val2.1</column>
+		</insert>
+		<insert tableName="TablesAndTables">
+			<column name="COLUMN1" type="TEXT">val3.1</column>
 		</insert>
 	</changeSet>
 </databaseChangeLog> 
