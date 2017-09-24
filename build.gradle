@@ -45,21 +45,19 @@ dependencies {
 
 	compile group: 'com.h2database', name: 'h2', version: '1.4.196'
 	compile "org.springframework.boot:spring-boot-starter-data-jpa"
-	
+
 	// Use JUnit 4 test framework
 	// testImplementation 'junit:junit:4.12'
 	// JUnit 5
 	testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0")
 	testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0")
-	
-	compile("org.springframework.boot:spring-boot-starter-web") {
-		exclude module: "spring-boot-starter-tomcat"
-	}
+
+	compile("org.springframework.boot:spring-boot-starter-web") { exclude module: "spring-boot-starter-tomcat" }
 	compile("org.springframework.boot:spring-boot-starter-jetty")
 	// end::jetty[]
 	// tag::actuator[]
 	compile("org.springframework.boot:spring-boot-starter-actuator")
-	
+
 }
 
 liquibase {
@@ -68,6 +66,8 @@ liquibase {
 			changeLogFile 'src/main/db/changelog/db.changelog-master.xml'
 			//url 'jdbc:h2:mem:test'
 			url "jdbc:h2:$rootDir/test"
+			username 'liqui'
+			password 'liqui'
 			classpath "$rootDir"
 		}
 	}
